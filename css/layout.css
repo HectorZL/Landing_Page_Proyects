@@ -35,13 +35,15 @@ header {
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: rgba(15, 23, 42, 0.8);
+  background-color: var(--nav-bg, rgba(255, 255, 255, 0.95));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   height: var(--header-height);
   display: flex;
   align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 nav {
@@ -73,33 +75,27 @@ nav {
 }
 
 .nav-link {
-  color: var(--text-secondary);
+  color: var(--nav-text, var(--text-primary));
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s;
+  font-weight: 600;
+  transition: all 0.3s ease;
   position: relative;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  margin: 0 0.25rem;
 }
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--accent);
+  color: white !important;
+  background-color: var(--accent) !important;
+  box-shadow: 0 4px 12px rgba(3, 132, 209, 0.2);
 }
 
+/* Remove the underline effect */
 .nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--accent);
-  transition: width 0.3s;
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-  width: 100%;
+  display: none;
 }
 
 .nav-actions {

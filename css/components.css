@@ -22,7 +22,7 @@
 }
 
 .hero-cta .social-link {
-  color: white;
+  color: #e0f7fa; /* Celeste pastel */
   font-size: 1.4rem;
   transition: all 0.3s ease;
   width: 40px;
@@ -31,11 +31,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(178, 235, 242, 0.2); /* Celeste muy suave */
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(178, 235, 242, 0.3); /* Borde celeste suave */
 }
 
 .hero-cta .social-link::before {
@@ -45,17 +46,19 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--accent);
+  background: linear-gradient(135deg, #80deea, #4dd0e1); /* Degradado de celeste */
   border-radius: 50%;
   transform: scale(0);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   z-index: -1;
+  opacity: 0.9;
 }
 
 .hero-cta .social-link:hover {
   color: white;
   transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(77, 208, 225, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .hero-cta .social-link:hover::before {
@@ -65,6 +68,11 @@
 .hero-cta .social-link i {
   position: relative;
   z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.hero-cta .social-link:hover i {
+  transform: scale(1.1);
 }
 
 /* ===== BUTTONS ===== */
@@ -548,35 +556,35 @@ section {
 /* ===== SOCIAL LINKS ===== */
 .social-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   list-style: none;
-  margin: 0;
-  padding: 0.5rem 1rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
   align-items: center;
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border-radius: 12px;
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .social-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background-color: var(--bg-tertiary);
-  color: var(--text-secondary);
-  transition: var(--transition);
+  color: var(--icon-color, var(--text-secondary));
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
 }
 
 .social-link:hover {
   background-color: var(--accent);
   color: white;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+  border-color: var(--accent);
 }
 
 /* ===== TAGS ===== */
@@ -629,6 +637,59 @@ section {
 textarea.form-control {
   min-height: 150px;
   resize: vertical;
+}
+
+/* ===== ABOUT SECTION ===== */
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+.about-text {
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
+.about-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.image-container {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--accent);
+  background: transparent;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* ===== UTILITIES ===== */
