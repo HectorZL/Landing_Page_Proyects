@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Héctor's Portfolio | Flutter & Python Developer</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <div class="grid-bg">
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-text"></span>
+            </div>
+            <div class="nav-links">
+                <a href="#inicio" class="nav-link active" data-i18n="nav.home">Inicio</a>
+                <a href="#acerca" class="nav-link" data-i18n="nav.about">Sobre Mí</a>
+                <a href="#proyectos" class="nav-link" data-i18n="nav.projects">Proyectos</a>
+                <a href="#contacto" class="nav-link" data-i18n="nav.contact">Contacto</a>
+                <div class="theme-toggle-container">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <div class="language-switcher">
+                    <button class="language-btn active" data-lang="es" aria-pressed="true">ES</button>
+                    <button class="language-btn" data-lang="en" aria-pressed="false">EN</button>
+                    <span class="language-slider"></span>
+                </div>
+            </div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Hola, soy <span class="text-gradient">Héctor</span></h1>
+                    <p class="hero-description">Desarrollador Full Stack apasionado por crear soluciones digitales innovadoras</p>
+                    <div class="hero-cta">
+                        <a href="#contacto" class="btn btn-primary" data-i18n="hero.cta1">Contáctame</a>
+                        <a href="#proyectos" class="btn btn-outline" data-i18n="hero.cta2">Ver Proyectos</a>
+                        <div class="social-links">
+                            <a href="https://github.com/tuusuario" class="social-link" target="_blank" aria-label="GitHub" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/tuusuario" class="social-link" target="_blank" aria-label="LinkedIn" rel="noopener noreferrer">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="mailto:tuemail@ejemplo.com" class="social-link" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="space-animation">
+                        <div class="planet"></div>
+                        <div class="stars"></div>
+                    </div>
+                </div>
+
+                </div>
+
+        </section>
+
+        <section id="acerca" class="about">
+            <div class="container">
+                <h2 class="section-title"><span class="highlight" data-i18n="about.title">Sobre Mí</span></h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="language-section" data-lang="en">
+                            <h3 data-i18n="about.whoami">Who I Am</h3>
+                            <p data-i18n="about.description1">Hello! I'm Héctor, a passionate software developer specialized in mobile application development with Flutter and backend solutions with Python.</p>
+                            <p data-i18n="about.description2">With several years of experience in software development, I take pride in creating applications that are not only visually appealing but also highly functional and user-friendly.</p>
+                            <p data-i18n="about.description3">My focus is on writing clean, maintainable, and scalable code, following industry best practices and the latest technological trends.</p>
+                            <div class="skills">
+                                <div class="skill-icon" title="Flutter">
+                                    <i class="fab fa-flutter" style="color: #42A5F5;"></i>
+                                    <span class="skill-tooltip">Flutter</span>
+                                </div>
+                                <div class="skill-icon" title="Dart">
+                                    <i class="fab fa-dart" style="color: #0175C2;"></i>
+                                    <span class="skill-tooltip">Dart</span>
+                                </div>
+                                <div class="skill-icon" title="Python">
+                                    <i class="fab fa-python" style="color: #3776AB;"></i>
+                                    <span class="skill-tooltip">Python</span>
+                                </div>
+                                <div class="skill-icon" title="Firebase">
+                                    <i class="fas fa-fire" style="color: #FFCA28;"></i>
+                                    <span class="skill-tooltip">Firebase</span>
+                                </div>
+                                <div class="skill-icon" title="SQL">
+                                    <i class="fas fa-database" style="color: #336791;"></i>
+                                    <span class="skill-tooltip">SQL</span>
+                                </div>
+                                <div class="skill-icon" title="Git">
+                                    <i class="fab fa-git-alt" style="color: #F05032;"></i>
+                                    <span class="skill-tooltip">Git</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="language-section" data-lang="es">
+                            <h3 data-i18n="about.whoami">¿Quién soy?</h3>
+                            <p data-i18n="about.description1">¡Hola! Soy Héctor, un desarrollador de software apasionado por crear soluciones digitales innovadoras. Me especializo en desarrollo móvil con Flutter y en la creación de APIs robustas con Python.</p>
+                            <p data-i18n="about.description2">Con varios años de experiencia en el desarrollo de software, me enorgullezco de crear aplicaciones que no solo son visualmente atractivas, sino también altamente funcionales y fáciles de usar.</p>
+                            <p data-i18n="about.description3">Mi enfoque se centra en escribir código limpio, mantenible y escalable, siguiendo las mejores prácticas de la industria y las últimas tendencias tecnológicas. Me encanta aprender nuevas tecnologías y enfrentar desafíos que me permitan crecer profesionalmente.</p>
+                            <div class="skills">
+                                <div class="skill-icon" title="Flutter">
+                                    <i class="fab fa-flutter" style="color: #42A5F5;"></i>
+                                    <span class="skill-tooltip">Flutter</span>
+                                </div>
+                                <div class="skill-icon" title="Dart">
+                                    <i class="fab fa-dart" style="color: #0175C2;"></i>
+                                    <span class="skill-tooltip">Dart</span>
+                                </div>
+                                <div class="skill-icon" title="Python">
+                                    <i class="fab fa-python" style="color: #3776AB;"></i>
+                                    <span class="skill-tooltip">Python</span>
+                                </div>
+                                <div class="skill-icon" title="Firebase">
+                                    <i class="fas fa-fire" style="color: #FFCA28;"></i>
+                                    <span class="skill-tooltip">Firebase</span>
+                                </div>
+                                <div class="skill-icon" title="SQL">
+                                    <i class="fas fa-database" style="color: #336791;"></i>
+                                    <span class="skill-tooltip">SQL</span>
+                                </div>
+                                <div class="skill-icon" title="Git">
+                                    <i class="fab fa-git-alt" style="color: #F05032;"></i>
+                                    <span class="skill-tooltip">Git</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <div class="image-container">
+                            <img src="https://via.placeholder.com/400x500/1f2937/111827?text=Héctor" alt="Héctor's Photo" class="profile-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proyectos" class="projects">
+            <div class="container">
+                <h2 class="section-title"><span data-i18n="projects.title">Mis Proyectos</span></h2>
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/600x400/1f2937/111827?text=Project+1" alt="Project 1" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">E-commerce App</h3>
+                            <p class="project-description">A full-featured e-commerce application built with Flutter and Firebase, featuring user authentication, product catalog, and payment integration.</p>
+                            <div class="project-tech">
+                                <i class="fas fa-mobile-alt" style="color: #42A5F5;" title="Flutter"></i>
+                                <i class="fas fa-fire" style="color: #FFA000;" title="Firebase"></i>
+                                <i class="fab fa-dart" style="color: #0175C2;" title="Dart"></i>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn primary">View Project</a>
+                                <a href="#" class="btn outline">Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/600x400/1f2937/111827?text=Project+2" alt="Project 2" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Task Manager API</h3>
+                            <p class="project-description">A RESTful API for task management built with Python and FastAPI, featuring JWT authentication and PostgreSQL database.</p>
+                            <div class="project-tech">
+                                <i class="fab fa-python" style="color: #3776AB;" title="Python"></i>
+                                <i class="fas fa-server" style="color: #009688;" title="FastAPI"></i>
+                                <i class="fas fa-database" style="color: #336791;" title="PostgreSQL"></i>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn primary">View Project</a>
+                                <a href="#" class="btn outline">Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/600x400/1f2937/111827?text=Project+3" alt="Project 3" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Weather App</h3>
+                            <p class="project-description">A weather forecasting application that displays current weather and forecasts using OpenWeatherMap API, built with Flutter.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Flutter</span>
+                                <span class="project-tag">API</span>
+                                <span class="project-tag">Dart</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn primary">View Project</a>
+                                <a href="#" class="btn outline">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year"></span> Héctor Zambrano. <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Update current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+    <script src="js/i18n.js"></script>
+    <script>
+        // Translations
+        const translations = {
+            'es': {
+                'nav.home': 'Inicio',
+                'nav.projects': 'Proyectos',
+                'nav.about': 'Acerca de mí',
+                'nav.contact': 'Contacto',
+                'hero.description': 'Transformando ideas en experiencias digitales excepcionales con código limpio y diseño innovador. Cada línea de código es una oportunidad para crear algo extraordinario.',
+                'hero.viewWork': 'Ver Proyectos',
+                'hero.contactMe': 'Contáctame',
+                'about.title': 'Acerca de',
+                'about.paragraph1': '¡Hola! Soy Héctor, un apasionado desarrollador de software especializado en el desarrollo de aplicaciones móviles con Flutter y soluciones backend con Python.',
+                'about.paragraph2': 'Con más de X años de experiencia en el desarrollo de software, me enorgullezco de crear aplicaciones que no solo son visualmente atractivas, sino también altamente funcionales y fáciles de usar.',
+                'about.paragraph3': 'Mi enfoque se centra en escribir código limpio, mantenible y escalable, siguiendo las mejores prácticas de la industria y las últimas tendencias tecnológicas.',
+                'about.whoami': '¿Quién soy?',
+                'about.description1': '¡Hola! Soy Héctor, un desarrollador de software apasionado por crear soluciones digitales innovadoras. Me especializo en desarrollo móvil con Flutter y en la creación de APIs robustas con Python.',
+                'about.description2': 'Con varios años de experiencia en el desarrollo de software, me enorgullezco de crear aplicaciones que no solo son visualmente atractivas, sino también altamente funcionales y fáciles de usar.',
+                'about.description3': 'Mi enfoque se centra en escribir código limpio, mantenible y escalable, siguiendo las mejores prácticas de la industria y las últimas tendencias tecnológicas. Me encanta aprender nuevas tecnologías y enfrentar desafíos que me permitan crecer profesionalmente.',
+                'about.skills': 'Habilidades Principales',
+                'projects.title': 'Mis Proyectos',
+                'footer.rights': 'Todos los derechos reservados.'
+            },
+            'en': {
+                'nav.home': 'Home',
+                'nav.projects': 'Projects',
+                'nav.about': 'About Me',
+                'nav.contact': 'Contact',
+                'hero.description': 'Transforming ideas into exceptional digital experiences with clean code and innovative design. Every line of code is an opportunity to create something extraordinary.',
+                'hero.viewWork': 'View Projects',
+                'hero.contactMe': 'Contact Me',
+                'about.title': 'About Me',
+                'about.whoami': 'Who I Am',
+                'about.description1': 'Hello! I\'m Héctor, a passionate software developer specialized in mobile application development with Flutter and backend solutions with Python.',
+                'about.description2': 'With several years of experience in software development, I take pride in creating applications that are not only visually appealing but also highly functional and user-friendly.',
+                'about.description3': 'My focus is on writing clean, maintainable, and scalable code, following industry best practices and the latest technological trends. I love learning new technologies and facing challenges that allow me to grow professionally.',
+                'about.skills': 'Key Skills',
+                'projects.title': 'My Projects',
+                'footer.rights': 'All rights reserved.'
+            }
+        };
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
