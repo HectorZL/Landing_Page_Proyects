@@ -29,14 +29,16 @@
         <!-- Content will be dynamically inserted here -->
     </div>
 
-    <!-- Load modules -->
+    <!-- Load scripts -->
     <script src="js/modules/loadSections.js" type="module"></script>
-    <script src="js/i18n.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/navigation.js"></script>
     <script>
-        // Initialize theme and set current year
+        // Set current year
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('current-year').textContent = new Date().getFullYear();
+            const yearElement = document.getElementById('current-year');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
         });
     </script>
 </body>
