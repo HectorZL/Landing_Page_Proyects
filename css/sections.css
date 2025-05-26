@@ -64,9 +64,64 @@
 .hero-cta {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: 2rem;
   margin: 3rem 0 2.5rem;
+  flex-wrap: nowrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.cta-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
   flex-wrap: wrap;
+  width: 100%;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-social {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+  padding-left: 2rem;
+  border-left: 2px solid var(--accent-light);
+}
+
+/* About section background */
+.about-section {
+  background-color: #f0f8ff; /* Light blue background */
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .about-section {
+  background-color: #0a192f; /* Darker blue for dark mode */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  
+  .hero-social {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+    width: 100%;
+    justify-content: flex-start;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+  }
 }
 
 .hero-cta .btn {
@@ -101,26 +156,10 @@
   transform: translateY(-2px);
 }
 
-/* Hero Social Links - Large Icons */
-.hero-cta {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  margin: 3rem 0 2.5rem;
-  flex-wrap: nowrap;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 1.2rem;
-}
-
 .hero-social {
   display: flex;
-  gap: 1.5rem;
-  margin-left: auto;
-  padding-left: 2rem;
-  border-left: 2px solid var(--accent-light);
+  gap: 1rem;
+  margin-top: 0;
 }
 
 .social-link {
@@ -138,6 +177,14 @@
   overflow: hidden;
   color: var(--text-primary);
   font-size: 3.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+/* Ensure contrast in dark mode */
+[data-theme="dark"] .social-link {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
 }
 
 .social-link i {

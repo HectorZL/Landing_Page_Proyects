@@ -16,10 +16,10 @@ const translations = {
         about: {
             title: "About Me",
             whoami: "Who I Am",
-            description1: "Hello! I'm Héctor, a passionate software developer specialized in mobile application development with Flutter and backend solutions with Python.",
-            description2: "With several years of experience in software development, I take pride in creating applications that are not only visually appealing but also highly functional and user-friendly.",
-            description3: "My focus is on writing clean, maintainable, and scalable code, following industry best practices and the latest technological trends. I love learning new technologies and facing challenges that allow me to grow professionally.",
-            skills: "Key Skills"
+            description1: "I'm Héctor, a dedicated software developer specializing in mobile application development with Flutter and robust backend solutions using Python. My expertise extends to crafting powerful web applications with both Django and Flask.",
+            description2: "With a proven track record in software development, I am passionate about building applications that are not only visually compelling but also exceptionally functional and user-friendly. I am committed to delivering clean, maintainable, and scalable code, consistently adhering to industry best practices and the latest technological advancements.",
+            description3: "Beyond my technical prowess, I bring a competitive spirit to every project, honed through participation in various tournaments. This drive ensures a relentless pursuit of excellence and a commitment to achieving outstanding results.",
+            skills: "Technical Stack"
         },
         projects: {
             title: "My Projects"
@@ -120,25 +120,42 @@ class I18n {
             }
         }
 
+        // Show only the selected language section
+        document.querySelectorAll('.language-section').forEach(section => {
+            section.style.display = 'none';
+        });
+        const activeSections = document.querySelectorAll(`.language-section[data-lang="${lang}"]`);
+        activeSections.forEach(section => {
+            section.style.display = 'block';
+        });
+
         // Update all translatable elements
-        this.updateContent();
+        this.translatePage();
         
-        // Force update hero section
+        // Update hero section
         const heroTitle = document.querySelector('.hero-title');
         const heroDescription = document.querySelector('.hero-description');
         const heroCta = document.querySelectorAll('.hero-cta .btn');
         
-        if (heroTitle && translations[lang].hero) {
-            heroTitle.innerHTML = translations[lang].hero.title;
+        if (heroTitle && translations[lang]?.hero?.title) {
+            const nameSpan = heroTitle.querySelector('.text-gradient');
+            if (nameSpan) {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = translations[lang].hero.title;
+                const newText = tempDiv.textContent || tempDiv.innerText || '';
+                heroTitle.innerHTML = newText.replace('Héctor', '<span class="text-gradient">Héctor</span>');
+            } else {
+                heroTitle.innerHTML = translations[lang].hero.title;
+            }
         }
         
-        if (heroDescription && translations[lang].hero) {
+        if (heroDescription && translations[lang]?.hero?.description) {
             heroDescription.textContent = translations[lang].hero.description;
         }
         
-        if (heroCta.length === 2 && translations[lang].hero) {
-            heroCta[0].textContent = translations[lang].hero.cta1;
-            heroCta[1].textContent = translations[lang].hero.cta2;
+        if (heroCta.length === 2 && translations[lang]?.hero) {
+            if (translations[lang].hero.cta1) heroCta[0].textContent = translations[lang].hero.cta1;
+            if (translations[lang].hero.cta2) heroCta[1].textContent = translations[lang].hero.cta2;
         }
     }
 
@@ -164,21 +181,52 @@ class I18n {
         const lang = this.language;
         const t = translations[lang];
 
+        // Update language attribute on html element
+        document.documentElement.lang = lang;
+
+        // Handle language sections
+        document.querySelectorAll('.language-section').forEach(section => {
+            section.style.display = 'none';
+        });
+        
+        const activeSections = document.querySelectorAll(`.language-section[data-lang="${lang}"]`);
+        activeSections.forEach(section => {
+            section.style.display = 'block';
+            
+            // Handle nested language sections (like in skills)
+            const nestedSections = section.querySelectorAll('.language-section');
+            nestedSections.forEach(nested => {
+                if (nested.dataset.lang !== lang) {
+                    nested.style.display = 'none';
+                } else {
+                    nested.style.display = 'inline';
+                }
+            });
+        });
+
         // Translate all elements with data-i18n attribute
         document.querySelectorAll('[data-i18n]').forEach(element => {
+            // Skip if element is inside an active language section
+            if (element.closest('.language-section') && !element.closest(`.language-section[data-lang="${lang}"]`)) {
+                return;
+            }
+
             const keys = element.getAttribute('data-i18n').split('.');
             let translation = t;
             
             // Traverse the translation object to get the correct translation
+            let keyExists = true;
             for (const key of keys) {
                 if (translation && translation[key] !== undefined) {
                     translation = translation[key];
                 } else {
                     console.warn(`Translation not found for: ${keys.join('.')}`);
-                    return;
+                    keyExists = false;
+                    break;
                 }
             }
 
+            if (!keyExists) return;
 
             // Update the element content or placeholder
             if (element.tagName === 'INPUT' && element.placeholder) {
@@ -192,38 +240,71 @@ class I18n {
 
         // Update hero section
         const heroTitle = document.querySelector('.hero-title');
-        if (heroTitle) {
-            heroTitle.textContent = t.hero.title;
+        if (heroTitle && t.hero && t.hero.title) {
+            const nameSpan = heroTitle.querySelector('.text-gradient');
+            if (nameSpan) {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = t.hero.title;
+                const newText = tempDiv.textContent || tempDiv.innerText || '';
+                heroTitle.innerHTML = newText.replace('Héctor', '<span class="text-gradient">Héctor</span>');
+            } else {
+                heroTitle.textContent = t.hero.title;
+            }
+        }
+
+        const heroDescription = document.querySelector('.hero-description');
+        if (heroDescription && t.hero && t.hero.description) {
+            heroDescription.textContent = t.hero.description;
+        }
+
+        // Update hero CTA buttons
+        const heroCta = document.querySelectorAll('.hero-cta .btn');
+        if (heroCta.length >= 2 && t.hero) {
+            if (t.hero.cta1) heroCta[0].textContent = t.hero.cta1;
+            if (t.hero.cta2) heroCta[1].textContent = t.hero.cta2;
         }
 
         // Update about section
-        const aboutSection = document.querySelector('.about');
-        if (aboutSection) {
-            const aboutTitle = aboutSection.querySelector('h2');
-            if (aboutTitle) aboutTitle.textContent = t.about.title;
+        if (t.about) {
+            const aboutTitle = document.querySelector('.about .section-title');
+            if (aboutTitle) {
+                aboutTitle.innerHTML = `<span class="highlight">${t.about.title}</span>`;
+            }
             
-            const whoami = aboutSection.querySelector('h3');
+            const whoami = document.querySelector('.about h3');
             if (whoami) whoami.textContent = t.about.whoami;
             
-            const descriptions = aboutSection.querySelectorAll('p[data-i18n^="about.description"]');
+            const descriptions = document.querySelectorAll('.about p[data-i18n^="about.description"]');
             descriptions.forEach((desc, index) => {
-                const key = `about.description${index + 1}`;
                 if (t.about[`description${index + 1}`]) {
                     desc.textContent = t.about[`description${index + 1}`];
                 }
             });
-            
-            const skillsTitle = aboutSection.querySelector('.skills-title');
-            if (skillsTitle) skillsTitle.textContent = t.about.skills;
         }
         
         // Update projects section
-        const projectsTitle = document.querySelector('.projects-title');
-        if (projectsTitle) projectsTitle.textContent = t.projects.title;
+        const projectsTitle = document.querySelector('.projects .section-title');
+        if (projectsTitle && t.projects) {
+            projectsTitle.innerHTML = `<span>${t.projects.title}</span>`;
+        }
         
         // Update footer
-        const footerRights = document.querySelector('.footer-rights');
-        if (footerRights) footerRights.textContent = t.footer.rights;
+        const footerRights = document.querySelector('.footer-bottom p');
+        if (footerRights && t.footer) {
+            const year = new Date().getFullYear();
+            footerRights.innerHTML = `&copy; ${year} Héctor Zambrano. <span>${t.footer.rights}</span>`;
+        }
+        
+        // Update navigation links
+        const navLinks = document.querySelectorAll('.nav-links a');
+        if (navLinks.length > 0 && t.nav) {
+            navLinks.forEach(link => {
+                const navKey = link.getAttribute('data-nav');
+                if (navKey && t.nav[navKey]) {
+                    link.textContent = t.nav[navKey];
+                }
+            });
+        }
     }
 }
 

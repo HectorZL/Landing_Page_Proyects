@@ -177,59 +177,6 @@ section {
   bottom: -40px;
 }
 
-/* Language Switcher */
-.language-switcher {
-  display: flex;
-  align-items: center;
-  margin-left: 15px;
-  background: var(--bg-tertiary);
-  border-radius: 20px;
-  padding: 2px;
-  position: relative;
-  overflow: hidden;
-}
-
-.language-btn {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  padding: 6px 12px;
-  border-radius: 16px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
-  z-index: 1;
-}
-
-.language-btn.active {
-  color: var(--text-primary);
-  font-weight: 500;
-}
-
-.language-btn:not(.active):hover {
-  color: var(--text-secondary);
-}
-
-.language-highlight {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  height: calc(100% - 4px);
-  width: 50%;
-  background: var(--accent);
-  border-radius: 14px;
-  transition: transform 0.3s ease;
-  z-index: 0;
-}
-
-[data-lang="es"] ~ .language-highlight {
-  transform: translateX(0);
-}
-
-[data-lang="en"] ~ .language-highlight {
-  transform: translateX(100%);
-}
-
 /* Animations */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -414,8 +361,6 @@ body, header, .card, .btn, input, textarea, select {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
 }
-
-
 
 /* Project card styles with smooth transitions */
 .project-card {
@@ -666,32 +611,6 @@ body, header, .card, .btn, input, textarea, select {
 .btn.small {
   padding: 0.375rem 0.75rem;
   font-size: 0.75rem;
-}
-
-/* Theme Toggle */
-.theme-toggle {
-  background: var(--bg-tertiary);
-  border: 2px solid var(--accent);
-  color: var(--accent);
-  font-size: 1rem;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  width: 36px;
-  height: 36px;
-  margin: 0 0.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.theme-toggle:hover {
-  transform: scale(1.1);
-  background: var(--accent);
-  color: white;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 /* Language Switcher */
