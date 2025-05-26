@@ -99,7 +99,7 @@ class I18n {
         localStorage.setItem('language', lang);
         document.documentElement.lang = lang;
         
-        // Update active state of language buttons
+        // Update active button
         document.querySelectorAll('.language-btn').forEach(btn => {
             if (btn.dataset.lang === lang) {
                 btn.classList.add('active');
@@ -110,17 +110,36 @@ class I18n {
             }
         });
 
-        // Show/hide language sections
-        document.querySelectorAll('.language-section').forEach(section => {
-            if (section.dataset.lang === lang) {
-                section.style.display = 'block';
-            } else {
-                section.style.display = 'none';
+        // Update slider position
+        const slider = document.querySelector('.language-slider');
+        if (slider) {
+            const activeBtn = document.querySelector('.language-btn.active');
+            if (activeBtn) {
+                slider.style.transform = `translateX(${activeBtn.offsetLeft}px)`;
+                slider.style.width = `${activeBtn.offsetWidth}px`;
             }
-        });
+        }
 
         // Update all translatable elements
-        this.translatePage();
+        this.updateContent();
+        
+        // Force update hero section
+        const heroTitle = document.querySelector('.hero-title');
+        const heroDescription = document.querySelector('.hero-description');
+        const heroCta = document.querySelectorAll('.hero-cta .btn');
+        
+        if (heroTitle && translations[lang].hero) {
+            heroTitle.innerHTML = translations[lang].hero.title;
+        }
+        
+        if (heroDescription && translations[lang].hero) {
+            heroDescription.textContent = translations[lang].hero.description;
+        }
+        
+        if (heroCta.length === 2 && translations[lang].hero) {
+            heroCta[0].textContent = translations[lang].hero.cta1;
+            heroCta[1].textContent = translations[lang].hero.cta2;
+        }
     }
 
     setTheme(theme) {

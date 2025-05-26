@@ -247,17 +247,39 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu toggle
     const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.querySelector('.nav-links');
+    const mobileNavLinks = document.querySelectorAll('.nav-link');
+    
+    function toggleMobileMenu() {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        
+        // Toggle body scroll when mobile menu is open
+        if (mobileNav.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
     
     if (hamburger && mobileNav) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            mobileNav.classList.toggle('active');
-            
-            // Toggle body scroll when mobile menu is open
-            if (mobileNav.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
+        // Toggle menu on hamburger click
+        hamburger.addEventListener('click', toggleMobileMenu);
+        
+        // Close menu when clicking on a nav link
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (hamburger.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (mobileNav.classList.contains('active') && 
+                !e.target.closest('.nav-links') && 
+                !e.target.closest('.hamburger')) {
+                toggleMobileMenu();
             }
         });
     }

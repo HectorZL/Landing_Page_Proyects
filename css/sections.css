@@ -63,8 +63,10 @@
 /* Hero CTA Buttons */
 .hero-cta {
   display: flex;
+  align-items: center;
   gap: 1.2rem;
   margin: 3rem 0 2.5rem;
+  flex-wrap: wrap;
 }
 
 .hero-cta .btn {
@@ -99,32 +101,87 @@
   transform: translateY(-2px);
 }
 
-/* Hero Social Links */
-.hero-social {
+/* Hero Social Links - Large Icons */
+.hero-cta {
   display: flex;
-  gap: 1.2rem;
-  margin-top: 2rem;
+  align-items: center;
+  gap: 3rem;
+  margin: 3rem 0 2.5rem;
+  flex-wrap: nowrap;
 }
 
-.hero-social .social-link {
-  width: 44px;
-  height: 44px;
+.hero-buttons {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.hero-social {
+  display: flex;
+  gap: 1.5rem;
+  margin-left: auto;
+  padding-left: 2rem;
+  border-left: 2px solid var(--accent-light);
+}
+
+.social-link {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background: var(--bg-tertiary);
-  color: var(--icon-color);
-  font-size: 1.1rem;
+  background: var(--bg-secondary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  border: 1px solid var(--border-color);
+  border: 3px solid var(--accent-light);
+  position: relative;
+  overflow: hidden;
+  color: var(--text-primary);
+  font-size: 3.5rem;
 }
 
-.hero-social .social-link:hover {
-  background: var(--accent);
+.social-link i {
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.social-link.github:hover {
+  background: #333;
   color: white;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(3, 132, 209, 0.2);
+  border-color: #333;
+}
+
+.social-link.linkedin:hover {
+  background: #0A66C2;
+  color: white;
+  border-color: #0A66C2;
+}
+
+/* Make icons larger on larger screens */
+@media (min-width: 992px) {
+  .hero-social {
+    gap: 2rem;
+  }
+  
+  .social-link {
+    width: 120px;
+    height: 120px;
+    font-size: 4.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .social-link {
+    width: 140px;
+    height: 140px;
+    font-size: 5rem;
+  }
 }
 
 /* Hero Image */
@@ -311,8 +368,69 @@
   bottom: -25px;
 }
 
+/* About Section */
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.about-image {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.about-image-container {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.about-profile-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.about-text {
+  color: var(--text-primary);
+}
+
+.about-text h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+
+.about-text p {
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+  
+  .about-image {
+    max-width: 350px;
+    margin: 0 auto 2rem;
+  }
+  
+  .about-text {
+    text-align: left;
+  }
+  
+  .about-text h3 {
+    font-size: 1.8rem;
+  }
   .hero {
     padding: 5rem 0 3rem;
   }
