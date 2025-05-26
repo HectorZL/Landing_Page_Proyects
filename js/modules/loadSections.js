@@ -40,5 +40,32 @@ if (document.readyState === 'loading') {
     loadSections();
 }
 
+// Load carousel script after all sections are loaded
+function loadCarouselScript() {
+    return new Promise((resolve) => {
+        const script = document.createElement('script');
+        script.src = 'js/modules/carousel.js';
+        script.onload = resolve;
+        document.body.appendChild(script);
+    });
+}
+
+// After all sections are loaded, initialize additional scripts
+async function initializeScripts() {
+    await loadCarouselScript();
+    
+    // Re-initialize any scripts that need to run after content is loaded
+    if (window.initTheme) window.initTheme();
+    if (window.initI18n) window.initI18n();
+    if (window.initMain) window.initMain();
+}
+
+// Modify the loadSections function to use initializeScripts
+const originalLoadSections = loadSections;
+window.loadSections = async function() {
+    await originalLoadSections();
+    await initializeScripts();
+};
+
 // Export for testing if needed
 export { loadSections };
