@@ -1,3 +1,9 @@
+<!-- Image Modal -->
+<div id="imageModal" class="modal">
+  <span class="close-modal">&times;</span>
+  <img class="modal-content" id="modalImage" alt="">
+</div>
+
 <section id="projects" class="projects">
     <div class="container">
         <h2 class="section-title">
@@ -6,7 +12,9 @@
         <div class="projects-grid">
             <!-- Project 1 - Audio Transcription AI -->
             <div class="project-card">
-                <img src="https://via.placeholder.com/600x400/1f2937/111827?text=Audio+AI" alt="Audio Transcription AI" class="project-image">
+                <div class="project-image-container" onclick="openModal(this)">
+                    <img src="/images/ai_resume/1.jpg" alt="Audio Transcription AI" class="project-image">
+                </div>
                 <div class="project-content">
                     <h3 class="project-title">
                         TRANSCRIPCION Y RESUMEN CON AI
@@ -28,66 +36,34 @@
                     </div>
                 </div>
             </div>
-                     
-
-            <!-- Project 4 - UTM Competition 2025 -->
-            <!-- Project 4 - UTM Competition 2025 -->
+            <!-- Project 2 - Medical System -->
             <div class="project-card">
-                <div class="project-carousel" data-project="medical">
-                  <div class="carousel-container">
-                    <div class="carousel-track">
-                      <div class="carousel-slide">
-                        <img src="images/medical/carro.png" alt="Medical System Screenshot 1" class="project-image" />
-                      </div>
-                      <div class="carousel-slide">
-                        <img src="images/medical/carro.png" alt="Medical System Screenshot 2" class="project-image" />
-                      </div>
-                      <div class="carousel-slide">
-                        <img src="images/medical/carro.png" alt="Medical System Screenshot 3" class="project-image" />
-                      </div>
-                    </div>
-              
-                    <!-- Opcional: botones de navegación -->
-                    <button class="carousel-btn prev" aria-label="Previous image">
-                      <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="carousel-btn next" aria-label="Next image">
-                      <i class="fas fa-chevron-right"></i>
-                    </button>
-              
-                    <!-- Dots -->
-                    <div class="carousel-dots">
-                      <button class="dot active" aria-label="Go to slide 1"></button>
-                      <button class="dot" aria-label="Go to slide 2"></button>
-                      <button class="dot" aria-label="Go to slide 3"></button>
-                    </div>
-                  </div>
+                <div class="project-image-container" onclick="openModal(this)">
+                    <img src="/images/medical/2.png" alt="Medical System" class="project-image">
                 </div>
-              
-                <!-- Contenido del proyecto -->
                 <div class="project-content">
-                  <h3 class="project-title">
-                    <span class="language-section" data-lang="en">Medical system</span>
-                    <span class="language-section" data-lang="es">SISTEMA MEDICO</span>
-                  </h3>
-                  <p class="project-description">
-                    <span class="language-section" data-lang="en">Medical system for patient management and medical records at UTM Hospital.</span>
-                    <span class="language-section" data-lang="es">Sistema médico para gestión de pacientes y doctores con django proyecto de la competencia "TU CODIGO" UTM 2025.</span>
-                  </p>
-                  <div class="project-technologies">
-                    <span class="tech-tag">Django</span>
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">PostgreSQL</span>
-                  </div>
-                  <div class="project-links">
-                    <a href="https://github.com/HectorZL/UTM_2025" class="btn btn-small btn-outline" target="_blank" rel="noopener noreferrer">
-                      <i class="fab fa-github"></i>
-                      <span>GitHub</span>
-                    </a>
-                  </div>
+                    <h3 class="project-title">
+                        SISTEMA MEDICO
+                    </h3>
+                    <p class="project-description">
+                        Sistema médico para gestión de pacientes y doctores con django proyecto de la competencia "TU CODIGO" UTM 2025.
+                    </p>
+                    <div class="project-technologies">
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/HectorZL/UTM_2025" class="btn btn-small btn-outline" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
                 </div>
-              </div>
+            </div>
+              
   
         </div>
     </div>
+   
 </section>

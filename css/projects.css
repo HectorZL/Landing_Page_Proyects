@@ -1,4 +1,92 @@
 /* Project Cards */
+.project-image-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+  background: #1a202c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  cursor: zoom-in;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0;
+}
+
+.project-image {
+  max-width: 90%;
+  max-height: 90%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.project-image-container:hover .project-image {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  overflow: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 20px;
+  box-sizing: border-box;
+  backdrop-filter: blur(5px);
+}
+
+.modal.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  animation: zoomIn 0.3s;
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: #bbb;
+  text-decoration: none;
+}
+
+@keyframes zoomIn {
+  from {transform: scale(0.9); opacity: 0;}
+  to {transform: scale(1); opacity: 1;}
+}
+
 .projects {
   padding: 6rem 0;
   background-color: var(--bg-primary);
@@ -24,8 +112,10 @@
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
   margin-top: 3.5rem;
 }
 
@@ -39,6 +129,15 @@
   flex-direction: column;
   position: relative;
   z-index: 1;
+  height: 100%;
+  min-height: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .project-card::before {
@@ -67,36 +166,54 @@
 .project-carousel {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 250px;
   overflow: hidden;
-  border-bottom: 1px solid var(--border-color);
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-container {
   position: relative;
   width: 100%;
   height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
 }
 
 .carousel-track {
   display: flex;
   height: 100%;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
 .carousel-slide {
-  min-width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.5s ease;
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(100%);
+  z-index: 1;
 }
 
 .carousel-slide.active {
   opacity: 1;
-  position: relative;
+  transform: translateX(0);
+  z-index: 2;
+}
+
+.carousel-slide.prev {
+  transform: translateX(-100%);
+  z-index: 1;
+}
+
+.carousel-slide.next {
+  transform: translateX(100%);
+  z-index: 1;
 }
 
 .carousel-slide img {
@@ -104,18 +221,14 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: transform 0.5s ease;
 }
 
-.carousel-slide img.loaded {
-  opacity: 1;
+.project-card:hover .carousel-slide img {
+  transform: scale(1.02);
 }
 
-.carousel-slide {
-  position: relative;
-}
-
+/* Efecto de carga */
 .carousel-slide::before {
   content: '';
   position: absolute;
@@ -128,10 +241,13 @@
   animation: shimmer 1.5s infinite linear;
   z-index: 1;
   opacity: 0.5;
+  transition: opacity 0.3s ease;
 }
 
-.carousel-slide img.loaded + .carousel-slide::before {
-  display: none;
+.carousel-slide img.loaded + .carousel-slide::before,
+.carousel-slide.active img.loaded + .carousel-slide::before {
+  opacity: 0;
+  pointer-events: none;
 }
 
 @keyframes shimmer {
@@ -139,25 +255,28 @@
   100% { background-position: -200% 0; }
 }
 
+/* Botones de navegación */
 .carousel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%) scale(0.9);
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary);
   border: none;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
   opacity: 0;
   visibility: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .project-card:hover .carousel-btn {
@@ -168,6 +287,7 @@
 
 .carousel-btn:hover {
   background: var(--accent);
+  color: white;
   transform: translateY(-50%) scale(1.1) !important;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
@@ -180,28 +300,243 @@
   right: 15px;
 }
 
-/* Ensure dots are visible on hover */
+/* Indicadores de posición (dots) */
+.carousel-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  margin: 0 auto;
+  width: max-content;
+  max-width: 90%;
+}
+
 .project-card:hover .carousel-dots {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-.carousel-dots {
-  position: absolute;
-  bottom: 15px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  z-index: 10;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+.carousel-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.7;
 }
 
+.carousel-dots .dot:hover {
+  transform: scale(1.2);
+  background: white;
+}
+
+/* Estilos para el carrusel de imágenes */
+.project-images {
+  border: 2px solid red; /* Borde rojo para visualizar el contenedor */
+  min-height: 450px; /* Altura mínima para asegurar que el contenedor tenga espacio */
+  position: relative;
+  width: 100%;
+  padding: 1rem 0;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.carousel-container {
+  position: relative;
+  max-width: 800px; /* Ancho máximo para el carrusel */
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  min-height: 400px;
+  padding: 20px; /* Espaciado interno */
+}
+
+.carousel-track-container {
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+  height: 400px; /* Altura fija para el contenedor */
+}
+
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+  position: relative;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  flex-shrink: 0; /* Evita que las diapositivas se encojan */
+}
+
+.carousel-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* Asegura que la imagen mantenga su relación de aspecto */
+  display: block;
+  margin: 0 auto; /* Centra la imagen horizontalmente */
+}
+
+/* Botones de navegación */
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.carousel-button:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-button.prev {
+  left: 0;
+}
+
+.carousel-button.next {
+  right: 0;
+}
+
+/* Indicadores de navegación */
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  gap: 8px;
+}
+
+.carousel-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-indicator.current-slide {
+  background: var(--primary-color);
+  transform: scale(1.2);
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .carousel-container {
+    padding: 0 30px;
+  }
+  
+  .carousel-button {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    padding: 0 25px;
+  }
+  
+  .carousel-button {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+  
+  .carousel-slide {
+    padding-bottom: 75%; /* Más cuadrado en móviles */
+  }
+}
+
+/* Contador de imágenes */
+.carousel-counter {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  z-index: 10;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .carousel-counter {
+  opacity: 1;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .project-carousel {
+    height: 220px;
+  }
+  
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+  
+  .carousel-dots {
+    bottom: 15px;
+  }
+  
+  .carousel-dots .dot {
+    width: 8px;
+    height: 8px;
+  }
+}
+/* Estilos base para los dots del carrusel */
 .carousel-dots {
   position: absolute;
   bottom: 10px;
@@ -233,11 +568,25 @@
   background: var(--accent);
 }
 
+/* Contenedor de la imagen del proyecto */
+.project-image-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; /* Esto crea un cuadrado perfecto */
+  overflow: hidden;
+  border-radius: 0; /* Eliminamos el borde redondeado */
+}
+
+/* Estilo para las imágenes dentro del contenedor */
 .project-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
+  border-radius: 0; /* Aseguramos que no tenga bordes redondeados */
 }
 
 .project-card:hover .project-image {
